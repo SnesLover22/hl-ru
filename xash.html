@@ -465,6 +465,9 @@
 			var finished_ = 0;
 			var need_buffer_ = new Uint8Array(mod_[4]);
 			var total_sizes_ = new Array(mod_[3]);
+			for (var j = 0; j < mod_[3]; j++) {
+				total_sizes_[j] = 0;
+			}
 			var is_finished_ = false;
 
 			for (var i = 0; i < mod_[3]; i++) {

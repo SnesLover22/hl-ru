@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="MobileOptimized" content="640" />
+	<meta name="HandheldFriendly" content="true" />
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<title>Half-Life для Браузера</title>
+
+	<style>
+		* {
+			outline: none;
+			overflow-x: hidden;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		body {
+			font-family: Arial;
+			margin: 10;
+			padding: none;
+			background-color: #555555;
+			color: #f0b418;
+		}
+
+		#controls {
+			display: inline-block;
+			float: right;
+			vertical-align: top;
+			margin-top: 5px;
+			margin-right: 20px;
+		}
+
+		#output {
+			width: 100%;
+			height: 200px;
+			margin: 0 auto;
+			margin-top: 10px;
+			border-left: 0px;
+			border-right: 0px;
+			border-style: solid;
+			padding-left: 0px;
+			padding-right: 0px;
+			display: block;
+			background-color: black;
+			color: white;
+			font-family: 'Lucida Console', Monaco, monospace;
+			outline: none;
+			border-color: #f0B418;
+		}
+
+		a.glow,
+		a.glow:hover,
+		a.glow:focus {
+			text-decoration: none;
+			color: #F0B418;
+			text-shadow: none;
+			-webkit-transition: 500ms linear 0s;
+			-moz-transition: 500ms linear 0s;
+			-o-transition: 500ms linear 0s;
+			transition: 500ms linear 0s;
+			outline: 0 none;
+		}
+
+		a.glow:hover,
+		a.glow:focus {
+			color: #ffa600;
+			text-shadow: -1px 1px 8px #ffa600, 1px -1px 8px #ffa600;
+		}
+
+		#launchme {
+			width: 200px;
+			height: 40px;
+			font-size: 20px;
+		}
+	</style>
+</head>
+
+<body bgcolor=#555555 text=#F0B418 link=#ffa600 vlink=#ffa600>
+	<p>
+	<h1>Порт Half-Life для браузера</h1>
+	</p>
+
+	<hr>
+	Настройки: <br>
+	<form>
+		Размер памяти: <input type=number value=150 id=mem />
+		<p><input id="launchme" type=button onclick=location.href="xash.html#"+document.getElementById('mem').value value="Запустить!"></p>
+	</form>
+	<hr>
+	<script>
+		window.oncontextmenu = function(e) {
+			return e.preventDefault();
+		}
+	</script>
+</body>
+
+</html>

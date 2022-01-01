@@ -222,6 +222,7 @@
 			<div id=zipHider style=display:none><input name=b type=radio id=rZip checked=true />ZIP архив (медленнее, но меньше, нет кэширования IndexedDB)<select id=selectZip style=display:none></select><br></div>
 			<hr>
 		</div>
+		<a class="glow"><label><span><input type="checkbox" id="use_fps_build">Использовать другую версию (возможно иногда будет больше фпс, но игра весит больше)</span></label></a><br><br>
 		Параметры запуска: <input value="-game valve -dev 1" name=d type=text id=iArgs /><br><br>
 
 		<input type=button id="launch_game_" onclick="startXash();return false;" value="Запустить игру!" />
@@ -461,7 +462,8 @@
 		}
 
 		function fetchZIP(packageName, cb) {
-			const mod_ = zipMods[0];
+			const use_fps_build = document.getElementById('use_fps_build').checked;
+			const mod_ = zipMods[use_fps_build ? 1 : 0];
 			var finished_ = 0;
 			var need_buffer_ = new Uint8Array(mod_[4]);
 			var total_sizes_ = new Array(mod_[3]);
@@ -473,7 +475,13 @@
 			for (var i = 0; i < mod_[3]; i++) {
 				const i_ = i;
 				const xhr = new XMLHttpRequest();
-				xhr.open('GET', 'halva_zip/halva-' + (i * mod_[2]) + '.zip', true);
+				xhr.open(
+					'GET',
+					use_fps_build ?
+					('halva_test/halva_test-' + (i * mod_[2]) + '.zip') :
+					('halva_zip/halva-' + (i * mod_[2]) + '.zip'),
+					true
+				);
 				xhr.responseType = 'arraybuffer';
 
 				xhr.onprogress = function(event) {
@@ -499,6 +507,9 @@
 						need_buffer_.set(new Uint8Array(xhr.response), i_ * mod_[2]);
 						if (finished_ >= mod_[3]) {
 							is_finished_ = true;
+							for (var j = 0; j < mod_[3]; j++) {
+								total_sizes_[j] = mod_[2];
+							}
 							if (Module['setStatus']) Module['setStatus']('Скачивание Half-Life... (' + mod_[4] + '/' + mod_[4] + ')');
 							mountZIP(need_buffer_);
 							cb();
